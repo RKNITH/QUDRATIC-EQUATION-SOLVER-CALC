@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quadratic Equation Calculator - Online</title>
+</head>
+
+<body>
+
+    <h1>Quadratic Equation Calculator - Online</h1>
+    <p>
+        A <b>X<sup>2</sup></b>
+        +
+        B <b>X<sup>1</sup></b>
+        +
+        C
+        =
+        0
+    </p>
+
+    <form name="form" method="post" action="" onsubmit="test(form.a.value, form.b.value, form.c.value);return false;">
+        A:
+        <input type="number" name="a" value="2" size="25" maxlength="25">
+
+        <br>
+        B:
+        <input type="number" name="b" value="2" size="25" maxlength="25">
+
+        <br>
+        C:
+        <input type="number" name="c" value="2" size="25" maxlength="25">
+
+        <br>
+        <button>Calculate Quadratic</button>
+
+        <h4>Output:</h4>
+        <div id="log"></div>
+        <mark>
+            <b id="roots"></b>
+        </mark>
+    </form>
+
+
+    <script src="quadratic.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        const elm_log = document.querySelector("#log")
+        const elm_roots = document.querySelector("#roots")
+
+        const test = (a, b, c) => {
+            const res = quadraticSolve(a, b, c)
+            console.log(res)
+
+            const display = (value) => {
+                if (value.i === 0)
+                    return `${value.real}`
+                else
+                    return `${value.real} + ${value.i} <i>i</i>`
+            }
+            elm_roots.innerHTML = `X<sub>1</sub> = ${display(res[0])}<br>X<sub>2</sub> = ${display(res[1])}<br>`
+        }
+
+        window.addEventListener("load", () => {
+            document.querySelector("button").click()
+        })
+    </script>
+
+</body>
+
+</html>
